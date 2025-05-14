@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <title>ניהול משתמש</title>
+</head>
+<body>
+    <h2><%= data.id ? "עריכת משתמש" : "הוספת משתמש חדש" %></h2>
+    <form method="post" action="<%= data.id ? '/Users/Edit/' + data.id : '/Users/Add' %>">
+        <label>שם מלא:</label><br>
+        <input type="text" name="name" value="<%= data.name || '' %>" required><br><br>
+
+        <label>שם משתמש:</label><br>
+        <input type="text" name="uname" value="<%= data.uname || '' %>" required><br><br>
+
+        <label>סיסמה:</label><br>
+        <input type="password" name="passwd" value="<%= data.passwd || '' %>" required><br><br>
+
+        <label>אימייל:</label><br>
+        <input type="email" name="email" value="<%= data.email || '' %>" required><br><br>
+
+        <label>סוג משתמש (type_id):</label><br>
+        <input type="number" name="type_id" value="<%= data.type_id || '' %>" required><br><br>
+
+        <label>תעודת זהות:</label><br>
+        <input type="text" name="tz" value="<%= data.tz || '' %>" required><br><br>
+
+        <button type="submit">שמור</button>
+    </form>
+
+    <br>
+    <a href="/Users/List">חזרה לרשימה</a>
+</body>
+</html>

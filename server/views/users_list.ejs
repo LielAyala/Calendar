@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <title><%= page_title %></title>
+</head>
+<body>
+    <h2><%= page_title %></h2>
+    <a href="/Users/Add">➕ הוספת משתמש חדש</a>
+    <br><br>
+    <table border="1" cellpadding="10">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>שם</th>
+                <th>שם משתמש</th>
+                <th>אימייל</th>
+                <th>סוג</th>
+                <th>תעודת זהות</th>
+                <th>פעולות</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (users.length === 0) { %>
+                <tr><td colspan="7">אין משתמשים</td></tr>
+            <% } %>
+            <% users.forEach(user => { %>
+                <tr>
+                    <td><%= user.id %></td>
+                    <td><%= user.name %></td>
+                    <td><%= user.uname %></td>
+                    <td><%= user.email %></td>
+                    <td><%= user.type_id %></td>
+                    <td><%= user.tz %></td>
+                    <td>
+                        <a href="/Users/Edit/<%= user.id %>">✏️ עריכה</a>
+                        <form method="post" action="/Users/Delete" style="display:inline;">
+                            <input type="hidden" name="id" value="<%= user.id %>">
+                            <button type="submit" onclick="return confirm('האם למחוק את המשתמש?')">🗑️ מחיקה</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</body>
+</html>
